@@ -1,0 +1,130 @@
+﻿@model IEnumerable<ProyectoFinal.Models.Product>
+
+@{
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Products</title>
+</head>
+<body>
+
+    @{
+
+        
+        if (ViewBag.Delete == 1)
+                {
+                    <div class="alert alert-danger mt-4 dispose" id="success-alert" role="alert">
+                        Se eliminó un producto correctamente
+                    </div>
+
+                    TempData.Remove("successDelete");
+                }
+
+
+        if (ViewBag.success == 1)
+        {
+            <div class="alert alert-success mt-4 dispose" id="success-alert" role="alert">
+                Se agregó un producto correctamente
+            </div>
+
+            TempData.Remove("success");
+        }
+
+        if (ViewBag.successEdit == 1)
+        {
+            <div class="alert alert-success mt-4 dispose" id="success-alert" role="alert">
+                Se agregó un producto correctamente
+            </div>
+
+            TempData.Remove("successEdit");
+        }
+    }
+
+
+    <h3 class="text-dark mt-3">Productos</h3>
+    <p>
+        <a class="mt-2" asp-action="CreateProduct">Create New</a>
+    </p>
+
+    <div class="container">
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.idProducts)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProductName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Marca)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Price)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Color)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Dimensions)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Materials)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.StockQ)
+                        </th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.idProducts)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Marca)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Price)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Color)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Dimensions)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Materials)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StockQ)
+                            </td>
+
+                            <td>
+                                @Html.ActionLink("Editar", "EditProduct", new { id = item.idProducts }) |
+                                @Html.ActionLink("Detalles", "Details", new { id = item.idProducts }) |
+                                @Html.ActionLink("Eliminar ", "DeleteProduct", new { id = item.idProducts })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
